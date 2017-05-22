@@ -6,15 +6,11 @@ import java.net.URL;
 import com.google.gson.Gson;
 import java.io.File;
 import java.util.List;
-
 import javafx.application.*;
-import java.text.*;
-import java.util.*;
-import javafx.event.*;
 import javafx.scene.*;
 import javafx.scene.control.*;
+import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.layout.*;
-import javafx.scene.input.*;
 import javafx.stage.*;
 import javafx.scene.control.TabPane.TabClosingPolicy;
 
@@ -73,6 +69,10 @@ public class WeatherWidget extends Application{
             )               
         );
         
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setVbarPolicy(ScrollBarPolicy.ALWAYS);
+        scrollPane.setPrefSize(115, 500);
+        
 //        Week view
         Label weekLabel = new Label();        
         for (int i = 0; i < 7; i++) {
@@ -81,26 +81,24 @@ public class WeatherWidget extends Application{
                 metservice.days.get(i).dow + " " + metservice.days.get(i).date + "\n" +  
                 "High: " + metservice.days.get(i).max + "\u00b0 " +
                 "Low: " + metservice.days.get(i).min + "\u00b0 \n" +
-                metservice.days.get(i).forecast +  "\n \n"
+                metservice.days.get(i).forecast +  "\n\n"
             );
-        }       
+        }    scrollPane.setContent(weekLabel);   
         Tab tabWeek = new Tab();       
         tabWeek.setText("Week");       
-        tabWeek.setContent(weekLabel);
+        tabWeek.setContent(scrollPane);
         
 //        Add tabs to tabPane
-        tabPane.getTabs().addAll(tabToday, tabTomorrow, tabWeek);
- 
-        Label footer = new Label("Developed by Liam Sharpe (2161665) - Data provided by metservice");
+        tabPane.getTabs().addAll(tabToday, tabTomorrow, tabWeek); 
         
         root.setTop(tabPane);
-        root.setBottom(footer);
-        
-        Scene scene = new Scene(root, 700, 800);
+        stage.setResizable(false);
+        stage.initStyle(StageStyle.UTILITY);
+        Scene scene = new Scene(root, 700, 545);
 
 //        Add css file
-        File f = new File("src/myPackage/style.css");
-        String fileURI = f.toURI().toString();
+        File file = new File("src/myPackage/style.css");
+        String fileURI = file.toURI().toString();
         scene.getStylesheets().clear();
         scene.getStylesheets().add(fileURI);
         
