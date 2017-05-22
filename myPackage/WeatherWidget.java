@@ -18,7 +18,7 @@ import javafx.scene.input.*;
 import javafx.stage.*;
 import javafx.scene.control.TabPane.TabClosingPolicy;
 
-public class GsonFetchNetworkJson extends Application{
+public class WeatherWidget extends Application{
     
     @Override
     public void start(Stage stage) throws Exception{
