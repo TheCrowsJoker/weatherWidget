@@ -32,14 +32,7 @@ public class WeatherWidget extends Application{
         InputStreamReader reader = new InputStreamReader(url.openStream());
         Metservice metservice = new Gson().fromJson(reader, Metservice.class);
 
-//        for (Days d : metservice.days) {
-//            System.out.println(d.dow + " " + d.date);
-//            System.out.println("High: " + d.max + "\u00b0  Low: " + d.min + "\u00b0");
-//            System.out.println(d.forecast);
-//            System.out.println();
-//        }
-
-        BorderPane root = new BorderPane();
+        BorderPane root = new BorderPane();  
         
         TabPane tabPane = new TabPane();
         tabPane.setTabClosingPolicy(TabClosingPolicy.UNAVAILABLE);
@@ -62,6 +55,7 @@ public class WeatherWidget extends Application{
         tabTomorrow.setText("Tomorrow");       
         tabTomorrow.setContent(
             new Label(
+                "Tomorrow's Weather \n\n" +
                 metservice.days.get(1).dow + " " + metservice.days.get(1).date + "\n" +  
                 "High: " + metservice.days.get(1).max + "\u00b0 " +
                 "Low: " + metservice.days.get(1).min + "\u00b0 \n" +
@@ -74,7 +68,7 @@ public class WeatherWidget extends Application{
         scrollPane.setPrefSize(115, 500);
         
 //        Week view
-        Label weekLabel = new Label();        
+        Label weekLabel = new Label("This week's Weather \n\n");        
         for (int i = 0; i < 7; i++) {
             weekLabel.setText(
                 weekLabel.getText() +
@@ -103,7 +97,7 @@ public class WeatherWidget extends Application{
         scene.getStylesheets().add(fileURI);
         
         stage.setScene(scene);
-        stage.setTitle("Title");
+        stage.setTitle("Wellington Weather Widget");
         stage.show();
       }
 
