@@ -14,12 +14,12 @@ import javafx.scene.layout.*;
 import javafx.stage.*;
 import javafx.scene.control.TabPane.TabClosingPolicy;
 
-public class WeatherWidget extends Application{
+public class WeatherWidget extends Application {
     
     @Override
-    public void start(Stage stage) throws Exception{
+    public void start(Stage stage) throws Exception {
         
-//        To change the location, uncomment the one you would like and comment the others
+//        To change the location, uncomment the one you would like and comment out the others
 //        Upper Hutt
         URL url = new URL("http://www.metservice.com/publicData/localForecastupper-hutt");
         
@@ -77,7 +77,8 @@ public class WeatherWidget extends Application{
                 "Low: " + metservice.days.get(i).min + "\u00b0 \n" +
                 metservice.days.get(i).forecast +  "\n\n"
             );
-        }    scrollPane.setContent(weekLabel);   
+        }
+        scrollPane.setContent(weekLabel);   
         Tab tabWeek = new Tab();       
         tabWeek.setText("Week");       
         tabWeek.setContent(scrollPane);
