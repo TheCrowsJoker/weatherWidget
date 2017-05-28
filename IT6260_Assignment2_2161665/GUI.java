@@ -1,5 +1,5 @@
 
-package myPackage;
+package IT6260_Assignment2_2161665;
 
 import java.io.File;
 import javafx.application.Application;
@@ -9,10 +9,10 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class GUI extends Application{
         
+//    Put the location in the parentheses for location based weather
     Weather weather = new Weather("upper-hutt");
     
     BorderPane root;
@@ -59,11 +59,10 @@ public class GUI extends Application{
 
         root.setTop(tabPane);
         primaryStage.setResizable(false);
-        primaryStage.initStyle(StageStyle.UTILITY);
-        scene = new Scene(root, 700, 545);
+        scene = new Scene(root, 800, 545);
 
 //        Add css file
-        file = new File("src/myPackage/style.css");
+        file = new File("src/IT6260_Assignment2_2161665/style.css");
         fileURI = file.toURI().toString();
         scene.getStylesheets().clear();
         scene.getStylesheets().add(fileURI);

@@ -1,10 +1,9 @@
 
-package myPackage;
+package IT6260_Assignment2_2161665;
 
 import com.google.gson.Gson;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.util.List;
 import javafx.scene.control.Label;
 
 public class Weather {
@@ -12,14 +11,14 @@ public class Weather {
     private String tempURL;
     private URL url;
     private InputStreamReader reader;
-    private Weather.Metservice metservice;
+    private Metservice metservice;
         
     public Weather(String city)  {        
         try {
             tempURL = "http://www.metservice.com/publicData/localForecast" + city;
             url = new URL(tempURL);      
             reader = new InputStreamReader(url.openStream());
-            metservice = new Gson().fromJson(reader, Weather.Metservice.class);
+            metservice = new Gson().fromJson(reader, Metservice.class);
         } catch(Exception e) {
             System.out.println("\n\n\nIncorrect city entered or unable to connect to the internet\n\n\n");
         }
@@ -57,18 +56,5 @@ public class Weather {
             );
         }
         return weekLabelContent;
-    }
-    
-    private static class Metservice {
-        String _usage;
-        List<Days> days;
-    }
-    
-    private static class Days {
-        String date;
-        String dow;
-        int max;
-        int min;
-        String forecast;
     }
 }
